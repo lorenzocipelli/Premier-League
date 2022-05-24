@@ -1,53 +1,38 @@
+from callbacks import on_subscribe, on_message, on_publish, on_connect
+from utils import USERNAME, PSW, URL, PORT
 import time
+import json
 import paho.mqtt.client as paho
 from paho import mqtt
-
-# setting callbacks for different events to see if it works, print the message etc.
-def on_connect(client, userdata, flags, rc, properties=None):
-    client_id = str(client._client_id)[2:-1]
-    print("CONNACK returned with status -> " + str(rc) +
-        "\nFrom -> " + client_id)
-
-# with this callback you can see if your publish was successful
-def on_publish(client, userdata, mid):
-    client_id = str(client._client_id)[2:-1]
-    print("Published on -> " + client_id + 
-        "\nMess. id -> " + str(mid))
-
-# print which topic was subscribed to
-def on_subscribe(client, userdata, mid, granted_qos, properties=None):
-    print("Subscribed -> " + str(mid) + " " + str(granted_qos))
-
-# print message, useful for checking if it was successful
-def on_message(client, userdata, msg):
-    print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
 
 client = paho.Client(client_id="ProgettoTELEMATICA", userdata=None, protocol=paho.MQTTv5)
 client.on_connect = on_connect
 
-# enable TLS for secure connection
+# abilito TLS per una connessione sicura
 client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
-# set username and password
-client.username_pw_set("ProgettoTELE", "Cipelli0Cresci")
-# connect to HiveMQ Cloud on port 8883 (default for MQTT)
-client.connect("ff4612ecc8c647d7b6128392b277b68a.s1.eu.hivemq.cloud", 8883)
+# imposta username e password
+client.username_pw_set(USERNAME, PSW)
+# connetto a HiveMQ Cloud sulla porta 8883 (default per MQTT)
+client.connect(URL, PORT)
 
-# setting callbacks, use separate functions like above for better visibility
+# imposto le callback
 client.on_subscribe = on_subscribe
-client.on_message = on_message
+#client.on_message = on_message
 client.on_publish = on_publish
 
-# subscribe to all topics of encyclopedia by using the wildcard "#"
-#client.subscribe("footballnews/#", qos=1)
-
+# entro in loop di ascolto, grazie a questo comando sono rese effettive le callback
 client.loop_start()
-# a single publish, this can also be done in loops, etc.
+
 i = 0
 for i in range(10):
-    client.publish("footballnews/parma", payload=i, qos=1, retain=False)
+    score = {
+            'home_team': 'Parma',
+            'away_team': 'Sassuolo',
+            'home_team_score' : 3,
+            'away_team_score' : 0 }
+
+    client.publish("footballnews", payload=json.dumps(score), qos=1, retain=False)
     i += 1
     time.sleep(5)
 
-# loop_forever for simplicity, here you need to stop the loop manually
-# you can also use loop_start and loop_stop
 client.loop_stop()
