@@ -6,8 +6,12 @@ import json
 import paho.mqtt.client as paho
 from paho import mqtt
 
+# CTRL + K + C -> comment block of code
+# CTRL + K + U -> uncomment block of code
+
 client = paho.Client(client_id="ProgettoTELEMATICA", userdata=None, protocol=paho.MQTTv5)
-df = pd.read_csv("database/weekly_fuel_prices.csv")
+df = pd.read_csv("database/football_news.csv")
+#df = pd.read_csv("database/weekly_fuel_prices.csv")
 client.on_connect = on_connect
 
 # abilito TLS per una connessione sicura
@@ -27,19 +31,24 @@ client.loop_start()
 
 # in questa fase simuliamo l'invio settimanale di dati riguardanti il prezzo dei carburanti 
 for index, row in df.iterrows():
-    survey_date = row["SURVEY_DATE"]
-    client.publish("fuel_prices/euro_super_95", 
-        payload=json.dumps({"SURVEY_DATE" : survey_date, "EURO_SUPER_95" : row["EURO-SUPER_95"]}), qos=1, retain=False)
-    client.publish("fuel_prices/automotive_gas_oil", 
-        payload=json.dumps({'SURVEY_DATE' : survey_date, 'AUTOMOTIVE_GAS_OIL' : row["AUTOMOTIVE_GAS_OIL"]}), qos=1, retain=False)
-    client.publish("fuel_prices/lgp", 
-        payload=json.dumps({'SURVEY_DATE' : survey_date, 'LPG' : row["LPG"]}), qos=1, retain=False)
-    client.publish("fuel_prices/heating_gas_oil", 
-        payload=json.dumps({'SURVEY_DATE' : survey_date, 'HEATING_GAS_OIL' : row["HEATING_GAS_OIL"]}), qos=1, retain=False)
-    client.publish("fuel_prices/residual_fuel_oil", 
-        payload=json.dumps({'SURVEY_DATE' : survey_date, 'RESIDUAL_FUEL_OIL' : row["RESIDUAL_FUEL_OIL"]}), qos=1, retain=False)
-    client.publish("fuel_prices/heavy_fuel_oil", 
-        payload=json.dumps({'SURVEY_DATE' : survey_date, 'HEAVY_FUEL_OIL' : row["HEAVY_FUEL_OIL"]}), qos=1, retain=False)
+    club_name = str(row["team_name"])
+    news_content = row["news_content"]
+    topic_name = "premier_league_news/" + club_name.lower().replace(' ', '_')
+    client.publish(topic_name, payload=json.dumps({'CLUB_NAME' : club_name, 'CONTENT' : news_content}), qos=1, retain=False)
+
+    # survey_date = row["SURVEY_DATE"]
+    # client.publish("fuel_prices/euro_super_95", 
+    #     payload=json.dumps({"SURVEY_DATE" : survey_date, "EURO_SUPER_95" : row["EURO-SUPER_95"]}), qos=1, retain=False)
+    # client.publish("fuel_prices/automotive_gas_oil", 
+    #     payload=json.dumps({'SURVEY_DATE' : survey_date, 'AUTOMOTIVE_GAS_OIL' : row["AUTOMOTIVE_GAS_OIL"]}), qos=1, retain=False)
+    # client.publish("fuel_prices/lgp", 
+    #     payload=json.dumps({'SURVEY_DATE' : survey_date, 'LPG' : row["LPG"]}), qos=1, retain=False)
+    # client.publish("fuel_prices/heating_gas_oil", 
+    #     payload=json.dumps({'SURVEY_DATE' : survey_date, 'HEATING_GAS_OIL' : row["HEATING_GAS_OIL"]}), qos=1, retain=False)
+    # client.publish("fuel_prices/residual_fuel_oil", 
+    #     payload=json.dumps({'SURVEY_DATE' : survey_date, 'RESIDUAL_FUEL_OIL' : row["RESIDUAL_FUEL_OIL"]}), qos=1, retain=False)
+    # client.publish("fuel_prices/heavy_fuel_oil", 
+    #     payload=json.dumps({'SURVEY_DATE' : survey_date, 'HEAVY_FUEL_OIL' : row["HEAVY_FUEL_OIL"]}), qos=1, retain=False)
 
     time.sleep(2)
 

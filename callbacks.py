@@ -17,4 +17,7 @@ def on_subscribe(client, userdata, mid, granted_qos, properties=None):
 # callback per l'arrivo di un messaggio da parte del broker
 def on_message(client, userdata, msg):
     payload = str(msg.payload)[2:-1]
-    print(msg.topic + " " + payload)
+    payload = payload.replace('\\\\','\\')
+    payload = payload.replace('\\','')
+    payload = payload.replace('u00a','')
+    print(msg.topic + " " + str(payload))
