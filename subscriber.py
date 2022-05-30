@@ -23,10 +23,11 @@ client_mqtt.on_subscribe = on_subscribe
 client_mqtt.on_message = on_message
 
 # iscrizione ai topic di interesse
-client_mqtt.subscribe([("premier_league_news/arsenal", 1),("premier_league_news/heating_gas_oil", 1)])
-client_mqtt.subscribe("premier_league_news/#", 1)
-#client_mqtt.subscribe([("fuel_prices/euro_super_95", 1),("fuel_prices/west_ham_united", 1)])
-#client_mqtt.subscribe("fuel_prices/#", 1)
+# client_mqtt.subscribe("premier_league_news", 1) # come se fosse un meno del servizio
+client_mqtt.subscribe([("premier_league_news/arsenal", 1),("premier_league_news/west_ham_united", 1)])
+#client_mqtt.subscribe("premier_league_news/#", 1) # iscrizione a tutti i sotto-topic
+#client_mqtt.subscribe([("fuel_prices/euro_super_95", 1),("fuel_prices/heating_gas_oil", 1)])
+#client_mqtt.subscribe("fuel_prices/#", 1) # iscrizione a tutti i sotto-topic
 
 # entro in loop di ascolto, grazie a questo comando sono rese effettive le callback
 client_mqtt.loop_forever()
