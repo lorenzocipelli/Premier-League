@@ -22,7 +22,7 @@ client_mqtt.connect(URL, PORT)
 client_mqtt.on_subscribe = on_subscribe
 client_mqtt.on_message = on_message
 
-# iscrizione ai topic di interesse
+# ISCRIZIONE AI TOPIC DI INTERESSE
 # client_mqtt.subscribe("premier_league_news", 1) # come se fosse un meno del servizio
 client_mqtt.subscribe([("premier_league_news/arsenal", 1),("premier_league_news/west_ham_united", 1)])
 #client_mqtt.subscribe("premier_league_news/#", 1) # iscrizione a tutti i sotto-topic
