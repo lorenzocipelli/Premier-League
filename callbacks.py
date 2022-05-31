@@ -1,3 +1,6 @@
+def on_log(client, userdata, level, buf):
+    print("log: ",buf)
+
 # callback per l'avvenuta connessione
 def on_connect(client, userdata, flags, rc, properties=None):
     client_id = str(client._client_id)[2:-1]
@@ -20,4 +23,4 @@ def on_message(client, userdata, msg):
     payload = payload.replace('\\\\','\\')
     payload = payload.replace('\\','')
     payload = payload.replace('u00a','')
-    print(msg.topic + "\n" + str(payload))
+    print(payload)
