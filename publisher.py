@@ -1,5 +1,5 @@
 from callbacks import on_subscribe, on_message, on_publish, on_connect
-from utils import USERNAME, PSW, URL, PORT, WELCOME_MESSAGE, TEAM_MESSAGE_1, TEAM_MESSAGE_2
+from utils import USERNAME, PSW, HOST_TLS, PORT_TLS, WELCOME_MESSAGE, TEAM_MESSAGE_1, TEAM_MESSAGE_2, HOST_NO_TLS, PORT_NO_TLS
 import pandas as pd
 import time
 import json
@@ -17,11 +17,12 @@ df = pd.read_csv("database/football_news.csv")
 client.on_connect = on_connect
 
 # abilito TLS per una connessione sicura
-client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
+# client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 # imposta username e password
-client.username_pw_set(USERNAME, PSW)
+# client.username_pw_set(USERNAME, PSW)
 # connetto a HiveMQ Cloud sulla porta 8883 (default per MQTT)
-client.connect(URL, PORT)
+# client.connect(HOST_TLS, PORT_TLS)
+client.connect(HOST_NO_TLS, PORT_NO_TLS)
 
 # imposto le callback
 client.on_subscribe = on_subscribe
