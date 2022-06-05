@@ -37,7 +37,7 @@ for index, row in df.iterrows():
     club_name = str(row["team_name"])
     news_content = row["news_content"]
     topic_name = base_name + club_name.lower().replace(' ', '_')
-    client.publish(topic_name, payload=news_content, qos=1, retain=False)
+    client.publish(topic_name, payload=news_content, qos=2, retain=False)
 
     # PUBBLICAZIONE DEI MESSAGGI Retained per ogni sotto topic di premier_league_news
     # team_welcome = TEAM_MESSAGE_1 + club_name + TEAM_MESSAGE_2
