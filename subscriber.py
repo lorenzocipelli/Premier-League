@@ -3,7 +3,7 @@ from utils import HOST_NO_TLS, HOST_TLS, PORT_NO_TLS, PORT_TLS, USERNAME, PSW, L
 import paho.mqtt.client as paho
 from paho import mqtt
 
-client_mqtt = paho.Client(client_id="Receiver", userdata=None, protocol=paho.MQTTv5, reconnect_on_failure=True)
+client_mqtt = paho.Client(client_id="Receiver_Cipelli", userdata=None, protocol=paho.MQTTv5, reconnect_on_failure=True)
 client_mqtt.on_connect = on_connect
 
 # abilito TLS per una connessione sicura

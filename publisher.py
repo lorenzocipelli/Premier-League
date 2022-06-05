@@ -10,7 +10,7 @@ base_name = "premier_league_news/"
 # CTRL + K + C -> comment block of code
 # CTRL + K + U -> uncomment block of code
 
-client = paho.Client(client_id="Publisher", userdata=None, protocol=paho.MQTTv5)
+client = paho.Client(client_id="Publisher_Cipelli", userdata=None, protocol=paho.MQTTv5)
 df = pd.read_csv("database/football_news.csv")
 client.on_connect = on_connect
 
