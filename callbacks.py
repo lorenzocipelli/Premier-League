@@ -1,3 +1,5 @@
+from utils import SEPARATOR
+
 def on_log(client, userdata, level, buf):
     print("log: ",buf)
 
@@ -22,5 +24,7 @@ def on_message(client, userdata, msg):
     payload = str(msg.payload)[2:-1]
     payload = payload.replace('\\\\','\\')
     payload = payload.replace('\\','')
-    payload = payload.replace('u00a','')
+    payload = payload.replace('xc2xa','')
+    print("TOPIC -> " + str(msg.topic) + " :")
     print(payload)
+    print(SEPARATOR)

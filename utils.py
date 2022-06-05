@@ -11,5 +11,6 @@ HEADERS = {'User-Agent': 'Mozilla/5.0'}
 WELCOME_MESSAGE = "Welcome to out service, we supply you with the latests news about your favourite Premier League Team. To follow your team topic insert inside the subscribe method 'premier_league_news/your_team_name', for multiple choice use [('premier_league_news/your_team', 0|1|2),('premier_league_news/another_team', 0|1|2)]"
 TEAM_MESSAGE_1 = "Welcome our dear "
 TEAM_MESSAGE_2 = " fan we hope you'll enjoy our service!"
+SEPARATOR = "**********************************************************************************************************************"
 
 # grafiche, controllare Kivj
