@@ -12,11 +12,12 @@ client_mqtt = paho.Client(client_id="", userdata=None, protocol=paho.MQTTv5)
 client_mqtt.on_connect = on_connect
 
 # abilito TLS per una connessione sicura
-client_mqtt.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
+# client_mqtt.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 # imposta username e password
-client_mqtt.username_pw_set(USERNAME, PSW)
+# client_mqtt.username_pw_set(USERNAME, PSW)
 # connetto a HiveMQ Cloud sulla porta 8883 (default per MQTT)
-client_mqtt.connect(URL, PORT)
+# client_mqtt.connect(URL, PORT)
+client_mqtt.connect("mqtt.eclipseprojects.io", 1883)
 
 # imposto le callback
 client_mqtt.on_subscribe = on_subscribe
