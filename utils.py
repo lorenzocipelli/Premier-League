@@ -1,7 +1,9 @@
 USERNAME = "ProgettoTELE"
 PSW = "Cipelli0Cresci"
-URL = "ff4612ecc8c647d7b6128392b277b68a.s1.eu.hivemq.cloud"
-PORT = 8883
+HOST_TLS = "ff4612ecc8c647d7b6128392b277b68a.s1.eu.hivemq.cloud"
+HOST_NO_TLS = "mqtt.eclipseprojects.io"
+PORT_TLS = 8883
+PORT_NO_TLS = 1883
 LOCALHOST = "mongodb://localhost:27017/"
 URL_INDEX = "https://www.skysports.com/football/teams"
 URL_BASE = "https://www.skysports.com"

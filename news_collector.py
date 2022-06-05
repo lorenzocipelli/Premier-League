@@ -73,4 +73,4 @@ def get_team_top_news() :
     df.to_csv (r'database/football_news.csv', index = False, header=True)
     print("DOWNLOAD news completed!")
 
-get_team_top_news()
+#get_team_top_news()
