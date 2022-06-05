@@ -3,6 +3,7 @@ from utils import USERNAME, PSW, HOST_TLS, PORT_TLS, WELCOME_MESSAGE, TEAM_MESSA
 import pandas as pd
 import time
 import paho.mqtt.client as paho
+from paho import mqtt
 
 base_name = "premier_league_news/"
 
@@ -29,7 +30,7 @@ client.on_publish = on_publish
 # entro in loop di ascolto, grazie a questo comando sono rese effettive le callback
 client.loop_start()
 # messaggio Retaied con la guida dei comandi per l'iscrizione ai sotto-topic
-client.publish("premier_league_news", payload=WELCOME_MESSAGE, qos=1, retain=True)
+# client.publish("premier_league_news", payload=WELCOME_MESSAGE, qos=1, retain=True)
 
 # in questa fase simuliamo l'invio settimanale di dati riguardanti il prezzo dei carburanti 
 for index, row in df.iterrows():
