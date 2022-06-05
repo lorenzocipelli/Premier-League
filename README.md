@@ -10,4 +10,5 @@ pip install pandas
 pip install paho-mqtt
 ```
 Run [subscriber.py](https://github.com/lorenzocipelli/telematica/blob/main/subscriber.py) to simulate a subscriber;
+
 Run [publisher.py](https://github.com/lorenzocipelli/telematica/blob/main/publisher.py) to simulate a publisher;
