@@ -10,7 +10,7 @@ base_name = "premier_league_news/"
 # CTRL + K + C -> comment block of code
 # CTRL + K + U -> uncomment block of code
 
-client = paho.Client(client_id="Publisher_Cipelli", userdata=None, protocol=paho.MQTTv5)
+client = paho.Client(client_id="Publisher_Cipelli", userdata=None, protocol=paho.MQTTv311)
 df = pd.read_csv("database/football_news.csv")
 client.on_connect = on_connect
 
@@ -37,7 +37,7 @@ for index, row in df.iterrows():
     club_name = str(row["team_name"])
     news_content = row["news_content"]
     topic_name = base_name + club_name.lower().replace(' ', '_')
-    client.publish(topic_name, payload=news_content, qos=2, retain=False)
+    client.publish(topic_name, payload=news_content, qos=1, retain=False)
 
     # PUBBLICAZIONE DEI MESSAGGI Retained per ogni sotto topic di premier_league_news
     # team_welcome = TEAM_MESSAGE_1 + club_name + TEAM_MESSAGE_2

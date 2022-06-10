@@ -3,7 +3,7 @@ from utils import HOST_NO_TLS, HOST_TLS, PORT_NO_TLS, PORT_TLS, USERNAME, PSW, L
 import paho.mqtt.client as paho
 from paho import mqtt
 
-client_mqtt = paho.Client(client_id="Receiver_Cipelli", userdata=None, protocol=paho.MQTTv5, reconnect_on_failure=True)
+client_mqtt = paho.Client(client_id="Receiver_Cipelli", clean_session=False, userdata=None, protocol=paho.MQTTv311, reconnect_on_failure=True)
 client_mqtt.on_connect = on_connect
 
 # abilito TLS per una connessione sicura
@@ -11,7 +11,7 @@ client_mqtt.on_connect = on_connect
 # imposta username e password
 # client_mqtt.username_pw_set(USERNAME, PSW)
 # connetto al broker (8883 porta default per mqtt over tls)
-# client.connect(HOST_TLS, PORT_TLS)
+# client_mqtt.connect(HOST_TLS, PORT_TLS)
 client_mqtt.connect(HOST_NO_TLS, PORT_NO_TLS, keepalive=60)
 
 # imposto le callback
@@ -21,7 +21,7 @@ client_mqtt.on_message = on_message
 
 # ISCRIZIONE AI TOPIC DI INTERESSE
 # client_mqtt.subscribe("premier_league_news", 1) # come se fosse un menù del servizio
-client_mqtt.subscribe([("premier_league_news/manchester_city", 0),("premier_league_news/west_ham_united", 0)])
+client_mqtt.subscribe([("premier_league_news/manchester_city", 1),("premier_league_news/west_ham_united", 1)])
 #client_mqtt.subscribe("premier_league_news/#", 1) # iscrizione a tutti i sotto-topic
 
 # entro in loop di ascolto, grazie a questo comando sono rese effettive le callback
