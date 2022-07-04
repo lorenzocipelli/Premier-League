@@ -12,5 +12,3 @@ WELCOME_MESSAGE = "Welcome to out service, we supply you with the latests news a
 TEAM_MESSAGE_1 = "Welcome our dear "
 TEAM_MESSAGE_2 = " fan we hope you'll enjoy our service!"
 SEPARATOR = "**********************************************************************************************************************"
-
-# grafiche, controllare Kivj

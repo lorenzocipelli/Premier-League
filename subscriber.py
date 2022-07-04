@@ -3,13 +3,17 @@ from utils import HOST_NO_TLS, HOST_TLS, PORT_NO_TLS, PORT_TLS, USERNAME, PSW, L
 import paho.mqtt.client as paho
 from paho import mqtt
 
-client_mqtt = paho.Client(client_id="Receiver_Cipelli", clean_session=False, userdata=None, protocol=paho.MQTTv311, reconnect_on_failure=True)
+CLIENT_ID = "Receiver_Cipelli_backup"
+TESTAMENT = CLIENT_ID + " went offline, sad :("
+
+client_mqtt = paho.Client(client_id=CLIENT_ID, clean_session=False, userdata=None, protocol=paho.MQTTv311, reconnect_on_failure=True)
 client_mqtt.on_connect = on_connect
 
 # abilito TLS per una connessione sicura
 # client_mqtt.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 # imposta username e password
 # client_mqtt.username_pw_set(USERNAME, PSW)
+client_mqtt.will_set("premier_league_news/manchester_city", TESTAMENT, 0, False)
 # connetto al broker (8883 porta default per mqtt over tls)
 # client_mqtt.connect(HOST_TLS, PORT_TLS)
 client_mqtt.connect(HOST_NO_TLS, PORT_NO_TLS, keepalive=60)
