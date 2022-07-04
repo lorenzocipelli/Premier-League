@@ -9,7 +9,7 @@ Use the terminal to install the following modules (make sure that the search pat
 pip install pandas
 pip install paho-mqtt
 pip install beautifulsoup4 (run this code just in case you want to execute
-	the news_collector.py file, that allows you to download the latests
+	the [news_collector.py](https://github.com/lorenzocipelli/telematica/blob/main/news_collector.py) file, that allows you to download the latests
 	news from every Premier League club)
 ```
 Run [subscriber.py](https://github.com/lorenzocipelli/telematica/blob/main/subscriber.py) to simulate a subscriber and being able to follow your favourite/es club and receive relatives news;
