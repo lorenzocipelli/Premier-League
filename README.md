@@ -11,6 +11,7 @@ pip install paho-mqtt
 pip install beautifulsoup4 (run this code just in case you want to execute
 	the news_collector.py file, that allows you to download the latests
 	news from every Premier League club)
+Now restart your program (Visual Studio Code, Python IDLE...)
 ```
 
 ## Script to run
