@@ -12,6 +12,8 @@ pip install beautifulsoup4 (run this code just in case you want to execute
 	the news_collector.py file, that allows you to download the latests
 	news from every Premier League club)
 ```
+
+## Script to run
 Run [subscriber.py](https://github.com/lorenzocipelli/telematica/blob/main/subscriber.py) to simulate a subscriber and being able to follow your favourite/es club and receive relatives news;
 
 Run [publisher.py](https://github.com/lorenzocipelli/telematica/blob/main/publisher.py) to simulate a publisherand and being able to publish about a specific topic;
