@@ -1,16 +1,18 @@
-from callbacks import on_subscribe, on_message, on_publish, on_connect
+from callbacks import on_subscribe, on_publish, on_connect
 from utils import USERNAME, PSW, HOST_TLS, PORT_TLS, WELCOME_MESSAGE, TEAM_MESSAGE_1, TEAM_MESSAGE_2, HOST_NO_TLS, PORT_NO_TLS
 import pandas as pd
 import time
 import paho.mqtt.client as paho
 from paho import mqtt
 
+CLIENT_ID = "Publisher_Cipelli2"
+TESTAMENT = CLIENT_ID + " went offline, sad :("
 base_name = "premier_league_news/"
 
 # CTRL + K + C -> comment block of code
 # CTRL + K + U -> uncomment block of code
 
-client = paho.Client(client_id="Publisher_Cipelli", userdata=None, protocol=paho.MQTTv311)
+client = paho.Client(client_id=CLIENT_ID, userdata=None, protocol=paho.MQTTv311)
 df = pd.read_csv("database/football_news.csv")
 client.on_connect = on_connect
 
@@ -18,6 +20,7 @@ client.on_connect = on_connect
 # client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 # imposta username e password
 # client.username_pw_set(USERNAME, PSW)
+client.will_set("premier_league_news/#", TESTAMENT, 0, False)
 # connetto al broker (8883 porta default per mqtt over tls)
 # client.connect(HOST_TLS, PORT_TLS)
 client.connect(HOST_NO_TLS, PORT_NO_TLS)
@@ -25,7 +28,6 @@ client.connect(HOST_NO_TLS, PORT_NO_TLS)
 # imposto le callback
 client.on_subscribe = on_subscribe
 client.on_publish = on_publish
-# client.on_message = on_message
 
 # entro in loop di ascolto, grazie a questo comando sono rese effettive le callback
 client.loop_start()
