@@ -3,7 +3,7 @@ from utils import HOST_NO_TLS, HOST_TLS, PORT_NO_TLS, PORT_TLS, USERNAME, PSW, L
 import paho.mqtt.client as paho
 from paho import mqtt
 
-CLIENT_ID = "Receiver_Cipelli_backup"
+CLIENT_ID = "Receiver_Cipelli"
 TESTAMENT = CLIENT_ID + " went offline, sad :("
 
 client_mqtt = paho.Client(client_id=CLIENT_ID, clean_session=False, userdata=None, protocol=paho.MQTTv311, reconnect_on_failure=True)

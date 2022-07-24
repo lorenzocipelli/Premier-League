@@ -7,7 +7,7 @@ import re
 pattern = re.compile('\W')
 
 def get_teams_links() :
-    links = [] # lista di stringhe
+    links = [] # lista di tuple (link, team_name)
     try :
         req = requests.get(URL_INDEX, HEADERS)
         soup = BeautifulSoup(req.content, 'html.parser')

@@ -1,4 +1,4 @@
-To run the program follow the instuctions below:
+To run the program follow the instructions below:
 first make sure to install python, that 'pip' package installer works fine,
 and last make sure that the search path for modules is correctly configured.
 
@@ -11,10 +11,10 @@ Now that python works fine type inside your terminal:
 Now restart your program (Visual Studio Code, Python IDLE...)
 
 Then run subscriber.py to simulate a subscriber and being able to
-follow your favourite/es club and receive relatives news;
+follow your favourite clubs and receive relatives news;
 
-Then run publisher.py to simulate a publisherand and being able to
+Then run publisher.py to simulate a publisher and and being able to
 publish about a specific topic;
 
 You can freely look inside the code and play with the subscriptions and
-publications, the code is commented so that functions are easly understandable
+publications, the code is commented so that functions are easily understandable
