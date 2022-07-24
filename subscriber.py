@@ -13,7 +13,7 @@ client_mqtt.on_connect = on_connect
 # client_mqtt.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 # imposta username e password
 # client_mqtt.username_pw_set(USERNAME, PSW)
-client_mqtt.will_set("premier_league_news/manchester_city", TESTAMENT, 0, False)
+client_mqtt.will_set(topic="premier_league_news/manchester_city", payload=TESTAMENT, qos=0)
 # connetto al broker (8883 porta default per mqtt over tls)
 # client_mqtt.connect(HOST_TLS, PORT_TLS)
 client_mqtt.connect(HOST_NO_TLS, PORT_NO_TLS, keepalive=60)
